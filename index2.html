@@ -4,6 +4,8 @@
     <title>Analyze Sample</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
+<body>
+ 
 <script type="text/javascript">
     function processImage() {
         // **********************************************
@@ -33,8 +35,7 @@
         };
  
         // Display the image.
-        // var sourceImageUrl = document.getElementById("inputImage").value;
-        var sourceImageUrl = "https://olegstore.blob.core.windows.net/mycontainer/people.jpg";
+        var sourceImageUrl = document.getElementById("inputImage").value;
         document.querySelector("#sourceImage").src = sourceImageUrl;
  
         // Make the REST API call.
@@ -57,9 +58,6 @@
         .done(function(data) {
             // Show formatted JSON on webpage.
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
-            document.getElementById("captionJson").innerHTML = data.description.captions[0].text;
-            
-            console.log(data.description.captions[0].text);  
         })
  
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -72,23 +70,8 @@
         });
     };
 </script>
-
-<style>
-    .body {
-        width: 500px;
-        height: 200px;
-        margin: 10% auto;
-    }
-
-    .body img {
-        margin: auto;
-    }
-</style>
-<body onload="processImage()">
  
-
- 
-<!-- <h1>Analyze image:</h1>
+<h1>Analyze image:</h1>
 Enter the URL to an image, then click the <strong>Analyze image</strong> button.
 <br><br>
 Image to analyze:
@@ -108,12 +91,6 @@ Image to analyze:
         <br><br>
         <img id="sourceImage" width="400" />
     </div>
-</div> -->
-    <div class="body">
-        <center>
-            <img id="sourceImage" />
-            <h2 id="captionJson"></h2>
-        </center>    
-    </div>
+</div>
 </body>
 </html>
